@@ -1,5 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Card from 'react-bootstrap/Card';
 
 const ShowError = ({ errors }) => {
     return (
@@ -30,24 +31,24 @@ export default class Form extends React.Component {
         let massage = [];
 
         if (nama.length === 0) {
-            massage = [...massage, "nama tidak boleh kosong"]
+            massage = [...massage, "Nama tidak boleh kosong"]
         }
 
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (email.length === 0) {
-            massage = [...massage, "email tidak boleh kosong"]
+            massage = [...massage, "Email tidak boleh kosong"]
         } else if(!re.test(String(email).toLocaleLowerCase())) {
             massage = [...massage, "Email tidak valid"]
         }
 
         if (nomor.length === 0) {
-            massage = [...massage, "nomor tidak boleh kosong"]
+            massage = [...massage, "Nomor tidak boleh kosong"]
         }
         if (kelamin.length === 0) {
-            massage = [...massage, "jenis kelamin tidak boleh kosong"]
+            massage = [...massage, "Jenis kelamin tidak boleh kosong"]
         }
         if (password.length === 0) {
-            massage = [...massage, "password tidak boleh kosong"]
+            massage = [...massage, "Password tidak boleh kosong"]
         } else if(password.length < 8) {
             massage = [...massage, "Password terlalu pendek"]
         }
@@ -87,6 +88,7 @@ export default class Form extends React.Component {
     render() {
         return (
             <>
+        <Card>
             <div class="container justify-content-center w-50 p-5">
             {
                 this.state.errors && <ShowError errors={this.state.errors} />
@@ -96,26 +98,26 @@ export default class Form extends React.Component {
                     <div class="row mb-3">
                         <label class="col-sm-3 col-form-label">Nama</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="inputName" name="nama" onChange={e => this.setState({ nama: e.target.value })} value={this.state.nama} />
+                            <input placeholder="Masukan Nama" type="text" class="form-control" id="inputName" name="nama" onChange={e => this.setState({ nama: e.target.value })} value={this.state.nama} />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-3 col-form-label">Email</label>
                         <div class="col-sm-9">
-                            <input type="email" class="form-control" id="inputEmail" name="email" onChange={e => this.setState({ email: e.target.value })} value={this.state.email} />
+                            <input placeholder="email@email.com" type="email" class="form-control" id="inputEmail" name="email" onChange={e => this.setState({ email: e.target.value })} value={this.state.email} />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-3 col-form-label">No. WA</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="inputNomor" name="nomor" onChange={e => this.setState({ nomor: e.target.value })} value={this.state.nomor} />
+                            <input placeholder="08123456789" type="text" class="form-control" id="inputNomor" name="nomor" onChange={e => this.setState({ nomor: e.target.value })} value={this.state.nomor} />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-3 col-form-label">Jenis Kelamin</label>
                         <div class="col-sm-9">
                             <select class="form-select" aria-label="Default select example" name="kelamin" onChange={e => this.setState({ kelamin: e.target.value })} value={this.state.kelamin}>
-                                <option selected>jenis kelamin</option>
+                                <option selected>Pilih Jenis Kelamin</option>
                                 <option value="1">Laki-Laki</option>
                                 <option value="2">Perempuan</option>
                             </select>
@@ -124,7 +126,7 @@ export default class Form extends React.Component {
                     <div class="row mb-3">
                         <label class="col-sm-3 col-form-label">Password</label>
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" id="inputPassword" name="password" onChange={e => this.setState({ password: e.target.value })} value={this.state.password} />
+                            <input placeholder="********" type="password" class="form-control" id="inputPassword" name="password" onChange={e => this.setState({ password: e.target.value })} value={this.state.password} />
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -132,7 +134,7 @@ export default class Form extends React.Component {
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="gridCheck1" checked={this.state.setuju} name="setuju" onChange={e => this.setState({ setuju: e.target.checked })} />
                                 <label class="form-check-label" for="gridCheck1">
-                                    Setuju dengan kebijakan perusahaan
+                                    Setuju dengan kebijakan perusahaan.
                                 </label>
                             </div>
                         </div>
@@ -142,6 +144,7 @@ export default class Form extends React.Component {
                     </div>
                 </form>
             </div>
+        </Card>
             </>
         )
     }
